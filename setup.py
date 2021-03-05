@@ -30,7 +30,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8'
     ],
-    url='https://github.com/RomelTorres/alpha_vantage',
+    url='https://github.com/Hyunyoun/alpha_vantage',
     install_requires=[
         'aiohttp',
         'requests'
