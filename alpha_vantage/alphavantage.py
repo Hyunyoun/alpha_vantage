@@ -385,7 +385,9 @@ class AlphaVantage(object):
                     else:
                         # JSON to CSV conversion through Pandas.
                         # Convert to CSV reader to stay consistent with native CSV API call.
-                        return csv.reader(data_pandas.to_csv().splitlines()), meta_data
+                        data = list(csv.reader(data_pandas.to_csv().splitlines()))
+                        data_pandas = pandas.DataFrame(data[1:], columns=data[0])
+                        return data_pandas, meta_data
             elif 'csv' == api_format:
                 if 'pandas' == output_format or \
                         'json' == output_format:
@@ -402,7 +404,9 @@ class AlphaVantage(object):
                     else:
                         return data_pandas.to_json(), None
                 else:
-                    return call_response, None
+                    data_list = list(call_response)
+                    data_pandas = pandas.DataFrame(data_list[1:], columns=data_list[0])
+                    return data_pandas, None
         
         def _convert_pandas_index(self, av, data_pandas: pandas.DataFrame):
             """Converts the index of a pandas.DataFrame as specified in the AlphaVantage class."""

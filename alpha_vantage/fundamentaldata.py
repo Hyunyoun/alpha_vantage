@@ -17,7 +17,7 @@ class FundamentalData(av):
                 "Output format {} is not compatible with the FundamentalData class.".format(
                     self.output_format.lower()))
     
-    @av.output_format()
+    @av.output_format('csv')
     @av.call_api_on_func('csv')
     def get_listing_status(self, date=None, state='active'):
         """
